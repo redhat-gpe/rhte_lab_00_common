@@ -1,0 +1,115 @@
+:scrollbar:
+:data-uri:
+:toc2:
+:linkattrs:
+:automation_demos_overview: link:https://drive.google.com/open?id=1SOCL49P87GeEcAbXF7L8Dq4b3_YMkoxkusq8tiPKfy8[GPTE Automation and Management Demos Overview]
+:cna_demos_overview: link:https://drive.google.com/open?id=1hhvRPN0H48zUs4IxJh4CwS3T9V3r_lAmM46m8cWuyBsP[GPTE Cloud Native Apps Demos Overview]
+:cloud_infrastructure_overview: link:https://drive.google.com/open?id=1o60IGJGS2Je4ydTBk_c_LT8HgIcGVsovke6bdX8QXB8[GPTE Hybrid Cloud Infrastructure Demos Overview]
+:rhte_session_planning: link:https://docs.google.com/spreadsheets/d/1BcWPAxo9GHR8Z1yHwxRCVA5tNpN8FNsNkXA6WB0yb6Q/edit#gid=1572036407[2018 Global RHTE - Session Planning]
+
+= Red Hat Tech Exchange Multi Product Demos
+
+Instructor Guide
+
+:numbered:
+
+== Overview
+
+== Planning Documents:
+
+. {automation_demos_overview}
+. {cna_demos_overview}
+. {cloud_infrastructure_overview}
+. {rhte_session_planning}
+
+== ILT Dates and Locations
+
+. *Sept 10-14, 2018*  : Taiwan
+. *Sept 24-28, 2018*  : Prague
+. *Oct 8-12, 2018*    : Orlando, Florida, US
+
+== Project Management
+
+=== Contributors:
+
+[cols="5,5,5,5",options="header"]
+|=======================================================================
+|Use Case | Ops | Dev | Peer
+|*rhte_lab_01_apis_as_a_business*|Hong|Satya|Pablo
+|*rhte_lab_02_brownfield_migration*|Hong|Jatinder|Hong
+|*rhte_lab_03_msa_and_service_mesh*|Hong|Chad|Hong
+|*rhte_lab_04_api_mgmt_and_service_mesh*|jbride|jbride|Nandan
+|*rhte_lab_05_msa_orchestration*|jbride|Bernard|Nandan
+|*rhte_lab_06_operational_intelligence*|jbride|Diego|Praveen
+|=======================================================================
+
+
+=== Project plans
+
+. Project planning will occur in each multi-product demo's project git repo.
+. Each project git repo has a project called:  _rhte_.
+. All issues should be assigned the following:
+.. Assignee
+.. Project (rhte)
+.. Milestone
+. [red]#Please make commits fine grained and specific to a github issue#
+. [red]#Please reference the github issue for each commit in the commit message#
++
+-----
+$ git commit -m https://github.com/redhat-gpe/rhte_lab_04_api_mgmt_and_service_mesh/issues/15
+-----
+
+== OCP Infrastructure
+
+All demos and student labs will be executed in OpenShift.
+
+. *Development environment:*  Please use https://master.dev39.openshift.opentlc.com
+. *ILTs* :
++
+For each ILT, an appropriately sized OCP Workshop environment will be provisioned for each multi-product demo.  ie:  6 MW multi-product demos = 6 dedicated OCP workshop environments.
+
+== CI / CD
+
+=== Version Control
+
+All aspects of each multi-product demo is to be version controlled.
+
+. link:https://github.com/redhat-gpe?utf8=%E2%9C%93&q=rhte_&type=&language=[project git repo]
+.. Slides
++
+NOTE:  Please implement slides in:  redhat.slides.com and then version control in this git project repo.
+.. Lab Instructions
+.. Project Management
+.. Issue tracking
+
+NOTE:  These multi-product demos are not a GPTE course.
+Therefore, there is not a need for assessment questions nor audio recording of slides.
+
+. link:https://github.com/gpe-mw-training[Lab assets]
++
+.. ansible role
+.. OCP templates
+.. Jenkins pipeline
+.. code solution
+.. mock data set
+.. unit and integration tests
+
+=== Binary Repositories
+
+Each OCP cluster comes provisioned with a Nexus in the `default` project.
+
+Please utilize this nexus for the following:
+
+. Proxy maven repository
+. Repository for generated binary artifacts from your Jenkins pipelines
+. Linux container image Repository
+
+=== Code Analysis
+
+=== Jenkins
+
+We'll share a common Jenkins server that will be provisioned and maintained by Hong.
+
+Please develop your Jenkins pipelines using the groovy based workflow plugin.
+
+The pipeline itself should be written in a file and version controlled as part of your lab assets.

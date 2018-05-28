@@ -3,7 +3,7 @@
 :toc2:
 :linkattrs:
 :automation_demos_overview: link:https://drive.google.com/open?id=1SOCL49P87GeEcAbXF7L8Dq4b3_YMkoxkusq8tiPKfy8[GPTE Automation and Management Demos Overview]
-:cna_demos_overview: link:https://drive.google.com/open?id=1hhvRPN0H48zUs4IxJh4CwS3T9V3r_lAmM46m8cWuyBsP[GPTE Cloud Native Apps Demos Overview]
+:cna_demos_overview: link:https://docs.google.com/document/d/1hhvRPN0H48zUs4IxJh4CwS3T9V3r_lAmM46m8cWuyBs/edit#heading=h.5ovkhgyfbmm1[GPTE Cloud Native Apps Demos Overview]
 :cloud_infrastructure_overview: link:https://drive.google.com/open?id=1o60IGJGS2Je4ydTBk_c_LT8HgIcGVsovke6bdX8QXB8[GPTE Hybrid Cloud Infrastructure Demos Overview]
 :rhte_session_planning: link:https://docs.google.com/spreadsheets/d/1BcWPAxo9GHR8Z1yHwxRCVA5tNpN8FNsNkXA6WB0yb6Q/edit#gid=1572036407[2018 Global RHTE - Session Planning]
 
@@ -32,15 +32,15 @@ Instructor Guide
 
 === Contributors:
 
-[cols="5,5,5,5",options="header"]
+[cols="1,5,5,5,5",options="header"]
 |=======================================================================
-|Use Case | Ops | Dev | Peer
-|*rhte_lab_01_apis_as_a_business*|Hong|Satya|Pablo
-|*rhte_lab_02_brownfield_migration*|Hong|Jatinder|Hong
-|*rhte_lab_03_msa_and_service_mesh*|Hong|Chad|Hong
-|*rhte_lab_04_api_mgmt_and_service_mesh*|jbride|jbride|Nandan
-|*rhte_lab_05_msa_orchestration*|jbride|Bernard|Nandan
-|*rhte_lab_06_operational_intelligence*|jbride|Diego|Praveen
+|Lab #|Use Case | Ops | Dev | Peer
+|1|*rhte_lab_01_apis_as_a_business*|Hong|Satya|Pablo
+|2|*rhte_lab_02_brownfield_migration*|Hong|Jatinder|Hong
+|3|*rhte_lab_03_msa_and_service_mesh*|Hong|Chad|Hong
+|4|*rhte_lab_04_api_mgmt_and_service_mesh*|jbride|jbride|Chad
+|5|*rhte_lab_05_msa_orchestration*|jbride|Bernard|Nandan
+|6|*rhte_lab_06_operational_intelligence*|jbride|Diego|Praveen/Nandan
 |=======================================================================
 
 
@@ -59,6 +59,19 @@ Instructor Guide
 $ git commit -m https://github.com/redhat-gpe/rhte_lab_04_api_mgmt_and_service_mesh/issues/15
 -----
 
+== Slides
+
+There will be one slide deck per multi-product demo.
+Please create slide decks in:  redhat.slides.com.
+
+. link:https://redhat.slides.com/jbride/01_apis_as_a_business?token=KH_uUwDl[rhte_lab_01_apis_as_a_business]
+. link:https://redhat.slides.com/jbride/02_brownfield_migration?token=gV0HpHBS[rhte_lab_02_brownfield_migration]
+. link:https://redhat.slides.com/jbride/03_msa_and_service_mesh?token=ckNXJ1yU[rhte_lab_03_msa_and_service_mesh]
+. link:[rhte_lab_04_api_mgmt_and_service_mesh]
+. link:[rhte_lab_05_msa_orchestration]
+. link://[rhte_lab_06_operational_intelligence]
+
+
 == OCP Infrastructure
 
 All demos and student labs will be executed in OpenShift.
@@ -74,6 +87,9 @@ For each ILT, an appropriately sized OCP Workshop environment will be provisione
 
 All aspects of each multi-product demo is to be version controlled.
 
+NOTE:  These multi-product demos are not a GPTE course.
+Therefore, there is not a need for assessment questions nor audio recording of slides.
+
 . link:https://github.com/redhat-gpe?utf8=%E2%9C%93&q=rhte_&type=&language=[project git repo]
 .. Slides
 +
@@ -81,9 +97,6 @@ NOTE:  Please implement slides in:  redhat.slides.com and then version control i
 .. Lab Instructions
 .. Project Management
 .. Issue tracking
-
-NOTE:  These multi-product demos are not a GPTE course.
-Therefore, there is not a need for assessment questions nor audio recording of slides.
 
 . link:https://github.com/gpe-mw-training[Lab assets]
 +

@@ -34,7 +34,7 @@ Instructor Guide
 
 [cols="1,5,5,5,5",options="header"]
 |=======================================================================
-|Lab #|Use Case | Ops | Dev | Peer
+|Demo #|Use Case | Ops | Dev | Peer
 |1|*rhte_lab_01_apis_as_a_business*|Hong|Satya|Pablo
 |2|*rhte_lab_02_brownfield_migration*|Hong|Jatinder|Hong
 |3|*rhte_lab_03_msa_and_service_mesh*|Hong|Chad|Hong

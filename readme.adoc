@@ -89,7 +89,7 @@ Please create slide decks in:  redhat.slides.com.
 . link:https://redhat.slides.com/jbride/03_msa_and_service_mesh?token=ckNXJ1yU[rhte_lab_03_msa_and_service_mesh]
 . link:[rhte_lab_04_api_mgmt_and_service_mesh]
 . link:[rhte_lab_05_msa_orchestration]
-. link://[rhte_lab_06_operational_intelligence]
+. link:https://redhat.slides.com/jbride/06_operational_intelligence?token=jf9evKi3[rhte_lab_06_operational_intelligence]
 
 
 == OCP Infrastructure

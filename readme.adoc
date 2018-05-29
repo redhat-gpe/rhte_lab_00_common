@@ -7,13 +7,20 @@
 :cloud_infrastructure_overview: link:https://drive.google.com/open?id=1o60IGJGS2Je4ydTBk_c_LT8HgIcGVsovke6bdX8QXB8[GPTE Hybrid Cloud Infrastructure Demos Overview]
 :rhte_session_planning: link:https://docs.google.com/spreadsheets/d/1BcWPAxo9GHR8Z1yHwxRCVA5tNpN8FNsNkXA6WB0yb6Q/edit#gid=1572036407[2018 Global RHTE - Session Planning]
 
-= Red Hat Tech Exchange Multi Product Demos
-
-Instructor Guide
+= Multi Product Demos : Instructor Guide
 
 :numbered:
 
 == Overview
+
+Red Hat Solution Architects and consultants have requested _multi-product demos_ that they can:
+
+. Learn from
+. Leverage as the basis for demos / POCs that they utilize in the field
+
+Red Hat GPTE has been directed to create and manage these multi-product demos.
+
+These demos will be utilized at the 3 Red Hat Tech Exchanges in 2018.
 
 == Planning Documents:
 
@@ -22,7 +29,7 @@ Instructor Guide
 . {cloud_infrastructure_overview}
 . {rhte_session_planning}
 
-== ILT Dates and Locations
+== Red Hat Tech Exchange 2018 Dates and Locations
 
 . *Sept 10-14, 2018*  : Taiwan
 . *Sept 24-28, 2018*  : Prague

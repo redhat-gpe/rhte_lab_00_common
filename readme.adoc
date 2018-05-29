@@ -22,6 +22,19 @@ Red Hat GPTE has been directed to create and manage these multi-product demos.
 
 These demos will be utilized at the 3 Red Hat Tech Exchanges in 2018.
 
+== Comparison with GPTE course labs
+
+GPTE middleware course lab instructions tend to be _step by step_ in nature.
+This is particularly the case at the experienced and advanced levels.
+Lab assets are typically a skeleton of the final solution.
+GPTE middleware courses tend to be focused on functionality provided by a single Red Hat product.
+
+These multi-product demos are different:
+
+. Demo assets should consist of the final solution.
+. The multi-product demo should be reproducible out of the box in Red Hat Partner Demo System (RHPDS).
+. Demo instructions should highlight how to order and use the demo.
+
 == Planning Documents:
 
 . {automation_demos_overview}

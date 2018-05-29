@@ -7,13 +7,33 @@
 :cloud_infrastructure_overview: link:https://drive.google.com/open?id=1o60IGJGS2Je4ydTBk_c_LT8HgIcGVsovke6bdX8QXB8[GPTE Hybrid Cloud Infrastructure Demos Overview]
 :rhte_session_planning: link:https://docs.google.com/spreadsheets/d/1BcWPAxo9GHR8Z1yHwxRCVA5tNpN8FNsNkXA6WB0yb6Q/edit#gid=1572036407[2018 Global RHTE - Session Planning]
 
-= Red Hat Tech Exchange Multi Product Demos
-
-Instructor Guide
+= Multi Product Demos : Instructor Guide
 
 :numbered:
 
 == Overview
+
+Red Hat Solution Architects and consultants have requested _multi-product demos_ that they can:
+
+. Learn from
+. Leverage as the basis for demos / POCs that they utilize in the field
+
+Red Hat GPTE has been directed to create and manage these multi-product demos.
+
+These demos will be utilized at the 3 Red Hat Tech Exchanges in 2018.
+
+== Comparison with GPTE course labs
+
+GPTE middleware course lab instructions tend to be _step by step_ in nature.
+This is particularly the case at the experienced and advanced levels.
+Lab assets are typically a skeleton of the final solution.
+GPTE middleware courses tend to be focused on functionality provided by a single Red Hat product.
+
+These multi-product demos are different:
+
+. Demo assets should consist of the final solution.
+. The multi-product demo should be reproducible out of the box in Red Hat Partner Demo System (RHPDS).
+. Demo instructions should highlight how to order and use the demo.
 
 == Planning Documents:
 
@@ -22,7 +42,7 @@ Instructor Guide
 . {cloud_infrastructure_overview}
 . {rhte_session_planning}
 
-== ILT Dates and Locations
+== Red Hat Tech Exchange 2018 Dates and Locations
 
 . *Sept 10-14, 2018*  : Taiwan
 . *Sept 24-28, 2018*  : Prague
@@ -34,7 +54,7 @@ Instructor Guide
 
 [cols="1,5,5,5,5",options="header"]
 |=======================================================================
-|Lab #|Use Case | Ops | Dev | Peer
+|Demo #|Use Case | Ops | Dev | Peer
 |1|*rhte_lab_01_apis_as_a_business*|Hong|Satya|Pablo
 |2|*rhte_lab_02_brownfield_migration*|Hong|Jatinder|Hong
 |3|*rhte_lab_03_msa_and_service_mesh*|Hong|Chad|Hong
@@ -46,8 +66,8 @@ Instructor Guide
 
 === Project plans
 
-. Project planning will occur in each multi-product demo's project git repo.
-. Each project git repo has a project called:  _rhte_.
+. Planning will occur in each multi-product demo's link:https://github.com/redhat-gpe?utf8=%E2%9C%93&q=rhte_&type=&language=[git repo].
+. Each project git repo has a prefix called:  _rhte_.
 . All issues should be assigned the following:
 .. Assignee
 .. Project (rhte)
@@ -69,7 +89,7 @@ Please create slide decks in:  redhat.slides.com.
 . link:https://redhat.slides.com/jbride/03_msa_and_service_mesh?token=ckNXJ1yU[rhte_lab_03_msa_and_service_mesh]
 . link:[rhte_lab_04_api_mgmt_and_service_mesh]
 . link:[rhte_lab_05_msa_orchestration]
-. link://[rhte_lab_06_operational_intelligence]
+. link:https://redhat.slides.com/jbride/06_operational_intelligence?token=jf9evKi3[rhte_lab_06_operational_intelligence]
 
 
 == OCP Infrastructure

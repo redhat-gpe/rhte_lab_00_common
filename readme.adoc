@@ -53,8 +53,8 @@ These demos will be utilized at the 3 Red Hat Tech Exchanges in 2018.
 
 === Project plans
 
-. Project planning will occur in each multi-product demo's project git repo.
-. Each project git repo has a project called:  _rhte_.
+. Planning will occur in each multi-product demo's link:https://github.com/redhat-gpe?utf8=%E2%9C%93&q=rhte_&type=&language=[git repo].
+. Each project git repo has a prefix called:  _rhte_.
 . All issues should be assigned the following:
 .. Assignee
 .. Project (rhte)

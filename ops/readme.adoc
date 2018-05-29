@@ -1,0 +1,28 @@
+= RHTE Infrastructure Notes
+
+== Jenkins
+
+-----
+$ oc new-project rhte-jenkins
+-----
+
+-----
+$ oc new-app jenkins-persistent --param ENABLE_OAUTH=true --param MEMORY_LIMIT=2Gi --param VOLUME_CAPACITY=4Gi
+-----
+
+-----
+$ oc new-app \
+        -p PVC_ID=-jenkins-slave-mvn \
+        -p PVC_SIZE=4Gi \
+        -f https://gist.githubusercontent.com/jbride/9a6a09636c7be59415126bc89795d774/raw/c6119e445b35beb66c95d2faa23609f3ea813041/gistfile1.txt
+-----
+
+Manage Jenkins -> Configure System -> Cloud -> Images ->  Kubernetes Pod Template (maven) -> Volumes -> Add Volume -> Persistent Volume Claim
+    - Claim Name:   claim-jenkins-slave-mvn
+    - Mount path:   /home/jenkins/.m2
+
+-----
+$ for name in jbride btison hchin sjayanti njoshi cdarby dtorresf jasingh prakrish; do
+> oc adm policy add-role-to-user admin $name-redhat.com -n rhte-jenkins --as=system:admin;
+> done
+-----

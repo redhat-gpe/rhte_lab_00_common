@@ -1,0 +1,236 @@
+#!groovy
+
+// Run this node on a Maven Slave
+// Maven Slaves have JDK and Maven already installed
+
+// 'maven' corresponds to Kubernetes Pod Template name specified in Jenkins system configuration
+// Jenkins sys configuration makes use of the "maven" slave image
+
+// Reference
+//  - https://github.com/openshift/jenkins-client-plugin
+node('maven-appdev') {
+
+  // Constants
+  def GREEN = "green"
+  def BLUE = "blue"
+  def PARKSMAP = "parksmap"
+
+  // Needs to include userId:password in URL because of the following:
+  // 1) jenkins git plugin only does a clone; no commit nor push
+  // 2) git utility is subsequently is used to commit new project version and push the commit to gogs
+  // 3) gogs in OCP is not enabled for ssh keys
+  // 4) subsequently, git utility needs userId:password in the URL to be able to push to gogs
+  // TO-DO:  maybe GIT_ASKPASS could be used ??
+  def sourceUrl = params.PROJECT_SOURCE_URL
+
+  def nexusHostUrl = params.NEXUS_HOST_URL
+
+  def devProject = params.DEV_PROJECT_NAME
+  def prodProject = params.PROD_PROJECT_NAME
+  def majorReleaseNumber = params.MAJOR_RELEASE_NUMBER
+  def serviceName = params.SERVICE_NAME
+  def packagePath= params.PACKAGE_PATH
+  def jenkinsBuildNumber = "${env.BUILD_NUMBER}"
+  def artifactType = params.ARTIFACT_TYPE
+
+  // This parameter should be of type:  Credentials Parameter
+  def gogsCredentialId = params.GOGS_CREDENTIAL_ID
+
+  def sonarHostUrl = params.SONAR_HOST_URL
+
+  // Define Maven Command. Make sure it points to the correct settings for our
+  // Nexus installation. The file nexus_settings.xml needs to be in the
+  // Source Code repository.
+  def mvnCmd = "mvn -s nexus_settings.xml -f pom.xml " 
+
+  stage('Print Vars') {
+    echo "Print Vars:  Jenkins BUILD_NUMBER = ${jenkinsBuildNumber} "
+    echo "Print Vars:  sourceUrl = ${sourceUrl} "
+    echo "Print Vars:  mvnCmd = ${mvnCmd} "
+    echo "Print Vars:  nexusHostUrl = ${nexusHostUrl} "
+    echo "Print Vars:  devProject = ${devProject} "
+    echo "Print Vars:  prodProject = ${prodProject} "
+    echo "Print Vars:  majorReleaseNumber = ${majorReleaseNumber} "
+    echo "Print Vars:  jenkinsBuildNumber = ${jenkinsBuildNumber} "
+    echo "Print Vars:  serviceName = ${serviceName} "
+    echo "Print Vars:  packagePath = ${packagePath} "
+    echo "Print Vars:  artifactType = ${artifactType} "
+    echo "Print Vars:  gogsCredentialId = ${gogsCredentialId} "
+    sh "mvn -v"
+    sh "oc whoami"
+  }
+
+  stage('Checkout Source') {
+    // Get Source Code from SCM (Git) as configured in the Jenkins Project
+    // Next line for inline script, "checkout scm" for Jenkinsfile from Gogs
+    echo "Checkout Source: sourceUrl = ${sourceUrl} "
+
+    // This clones in working directory
+    // https://wiki.jenkins.io/display/JENKINS/Git+Plugin
+    git credentialsId: "${gogsCredentialId}", url: "${sourceUrl}"
+    sh "ls -l "
+  }
+
+  // The following variables need to be defined at the top level and not inside
+  // the scope of a stage - otherwise they would not be accessible from other stages.
+  // Extract version and other properties from the pom.xml
+  def groupId    = getGroupIdFromPom("pom.xml")
+  def artifactId = getArtifactIdFromPom("pom.xml")
+
+  // Using Maven build the artifact file
+  // Do not run tests in this step
+  stage('Build app') {
+
+    // Increment version of app using maven versions plugin
+    // http://www.mojohaus.org/versions-maven-plugin/set-mojo.html
+    sh "${mvnCmd} versions:set -DgenerateBackupPoms=false -DnewVersion=${majorReleaseNumber}-${jenkinsBuildNumber} -DnexusHostUrl=${nexusHostUrl}"
+    
+    echo "Build app: mvnCmd = ${mvnCmd}"
+    sh "${mvnCmd} clean package -DskipTests -DnexusHostUrl=${nexusHostUrl}"
+  }
+
+
+
+  // Now that source has been compiled, determine version
+  def version    = getVersionFromPom("pom.xml")
+
+
+
+  // Using Maven run the unit tests
+  stage('Unit Tests') {
+    echo "Unit Tests"
+    sh "${mvnCmd} clean test -DnexusHostUrl=${nexusHostUrl}"
+  }
+
+
+
+  // Using Maven call SonarQube for Code Analysis
+  stage('Code Analysis') {
+    echo "Code Analysis"
+    sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://${sonarHostUrl} -Dsonar.projectName=${serviceName}-${version} -DnexusHostUrl=${nexusHostUrl}"
+  }
+
+
+
+
+  // Publish the latest artifact file to Nexus. This needs to go into <nexusurl>/repository/maven-releases.
+  stage('Publish to Nexus') {
+    echo "Publish to Nexus: Will use build with external artifacts approach"
+
+    // https://maven.apache.org/plugins/maven-deploy-plugin/deploy-mojo.html
+    sh "${mvnCmd} deploy -DskipTests -DnexusHostUrl=${nexusHostUrl} -DaltDeploymentRepository=nexus::default::${nexusHostUrl}/repository/maven-releases"
+
+  }
+
+    
+    
+    
+  stage('Commit version') {
+    echo "Commit version to gogs: version = ${version}"
+
+    // TO-DO: Add /home/jenkins/.gitconfig  as a layer to jenkins slave
+    sh "git config --global user.email \"gpte-jenkins+1@redhat.com\" "
+    sh "git config --global user.name \"gpte-jenkins\" "
+
+    def commitMsg = "Build " + version
+    sh "git add pom.xml && git commit -m \" ${commitMsg} \" && git push origin master"
+  }
+
+  stage('Build OpenShift Image') {
+    echo "Build OpenShift Image"
+
+    // 1) patch BC such that it outputs the imagestream with a new tag of this latest version
+    sh "oc patch bc/${serviceName} --patch '{\"spec\": { \"output\": {\"to\": {\"name\": \"${serviceName}:${version}\" }}}}' -n ${devProject}"
+
+    // 2) Initiate OCP BuildConfig using artifact in Nexus
+    //    - Ensure default serviceaccount in dev project has edit role
+    sh "oc start-build ${serviceName} -e ARTIFACT_URL=${nexusHostUrl}/repository/maven-releases/${packagePath}/${version}/${serviceName}-${version}.${artifactType} -e ARTIFACT_OUTPUT_FILE=ROOT.${artifactType} --follow -n ${devProject}"
+  }
+
+  // Deploy the built image to the Development Environment. Pay close attention to WHICH image you are deploying.
+  // Make sure it is the one you just tagged in the previous step. You may need to patch the deployment configuration
+  // of your application.
+  stage('Deploy to Dev') {
+    echo "Deploy to Dev"
+
+    sh "oc patch dc/${serviceName} --patch '{\"spec\": { \"template\": {\"spec\": {\"containers\": [{ \"name\":\"${serviceName}\",  \"image\":\"${serviceName}:${version}\" }] }}}}' -n ${devProject}"
+    sh "oc patch dc/${serviceName} --patch '{\"spec\": { \"triggers\": [{ \"type\": \"ImageChange\", \"imageChangeParams\": { \"containerNames\": [\"${serviceName}\"], \"from\": { \"name\":\"${serviceName}:${version}\" } }}] }}' -n ${devProject}"
+
+
+    openshiftDeploy depCfg: "${serviceName}", verbose: 'false', waitTime: '', waitUnit: 'sec', namespace: "${devProject}"
+    openshiftVerifyService namespace: "${devProject}", svcName: "${serviceName}", verbose: 'false'
+  }
+
+  stage('Integration Test') {
+    echo "Integration Test on ${serviceName}"
+
+    // Every service has its own integration tests in a file called:  bin/integration_tests.sh
+    sh "bin/integration_tests.sh"
+
+  }
+
+  // Deploy the ProdReady-${version} image. Make sure this is the actual tagged image deployed!
+  // Do not activate the new version yet.
+  stage('Deploy new Version to Prod') {
+    echo "Deploy new Version to Prod"
+
+     // Copy image from dev to Nexus
+     sh "skopeo copy --src-tls-verify=false --dest-tls-verify=false --src-creds jenkins:\$(oc whoami -t) --dest-creds admin:admin123 docker://docker-registry.default.svc.cluster.local:5000/${devProject}/${serviceName}:${version} docker://nexus-registry.${devProject}.svc.cluster.local:5000/${serviceName}:${version}"
+    
+    // Copy image from dev to prod
+    // NOTE:  could just as easily use:  oc tag 
+    sh "skopeo --debug copy --src-tls-verify=false --src-creds=jenkins:`oc whoami -t` --dest-tls-verify=false --dest-creds=jenkins:`oc whoami -t` docker://docker-registry.default.svc:5000/${devProject}/${serviceName}:${version} docker://docker-registry.default.svc:5000/${prodProject}/${serviceName}:${version}"
+
+  }
+
+  // Once approved (input step) switch production over to the new version.
+  stage('Switch over to new Version') {
+
+    // 1) Determine env (ie: blue or green) of current service
+    def currentProdEnv = "oc get service/${serviceName} -o template --template {{.spec.selector.deploymentConfig}} -n ${prodProject}".execute().text
+    currentProdEnv = currentProdEnv.substring(currentProdEnv.indexOf('-')+ 1)
+
+    echo "Switch to new Version"
+    input "Current version = ${currentProdEnv}. Switch Production?"
+
+    // 2) Establish the target environment (ie:  blue or green)
+    def newProdEnv = "changeme"
+    if(GREEN.equals(currentProdEnv)) {
+        newProdEnv = BLUE
+    }else if(BLUE.equals(currentProdEnv)) {
+        newProdEnv = GREEN
+    }else {
+        echo "Switch over to new version() Unknown environment= ${currentProdEnv}"
+        System.exit(1)
+    }
+    echo "newProdEnv = ${currentProdEnv}"
+
+    // 3) Update target DC in prod to use new image
+    sh "oc patch dc/${serviceName}-${newProdEnv} --patch '{\"spec\": { \"template\": {\"spec\": {\"containers\": [{ \"name\":\"${serviceName}-${newProdEnv}\",  \"image\":\"${serviceName}:${version}\" }] }}}}' -n ${prodProject}"
+    sh "oc patch dc/${serviceName}-${newProdEnv} --patch '{\"spec\": { \"triggers\": [{ \"type\": \"ImageChange\", \"imageChangeParams\": { \"containerNames\": [\"${serviceName}-${newProdEnv}\"], \"from\": { \"name\":\"${serviceName}:${version}\" } }}] }}' -n ${prodProject}"
+
+    // 4) Rollout the updated dc
+    openshiftDeploy depCfg: "${serviceName}-${newProdEnv}", verbose: 'false', waitTime: '', waitUnit: 'sec', namespace: "${prodProject}"
+
+    // 5) Swich the svc to fully point to the new DC
+    sh "oc patch svc ${serviceName} -n ${prodProject} -p '{\"spec\":{\"selector\":{\"deploymentConfig\":\"${serviceName}-${newProdEnv}\"}}}'"
+
+    // 6)  Now that target Deployment and Service have been switched, now test it
+    openshiftVerifyService namespace: "${prodProject}", svcName: "${serviceName}", verbose: 'false'
+
+  }
+}
+// Convenience Functions to read variables from the pom.xml
+// Do not change anything below this line.
+def getVersionFromPom(pom) {
+  def matcher = readFile(pom) =~ '<version>(.+)</version>'
+  matcher ? matcher[0][1] : null
+}
+def getGroupIdFromPom(pom) {
+  def matcher = readFile(pom) =~ '<groupId>(.+)</groupId>'
+  matcher ? matcher[0][1] : null
+}
+def getArtifactIdFromPom(pom) {
+  def matcher = readFile(pom) =~ '<artifactId>(.+)</artifactId>'
+  matcher ? matcher[0][1] : null
+}

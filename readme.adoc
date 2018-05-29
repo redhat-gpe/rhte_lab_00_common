@@ -121,7 +121,7 @@ Please utilize this nexus for the following:
 
 === Jenkins
 
-We'll share a common Jenkins server that will be provisioned and maintained by Hong.
+We'll share a link:https://jenkins-rhte-jenkins.apps.dev39.openshift.opentlc.com[common multi-tenant Jenkins server] that will be provisioned and maintained by Hong.
 
 Please develop your Jenkins pipelines using the groovy based workflow plugin.
 

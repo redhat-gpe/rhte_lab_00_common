@@ -52,15 +52,15 @@ These multi-product demos are different:
 
 === Contributors:
 
-[cols="1,5,5,5,5",options="header"]
+[cols="1,5,5,5,5,5",options="header"]
 |=======================================================================
-|Demo #|Use Case | Ops | Dev | Peer
-|1|*rhte_lab_01_apis_as_a_business*|Hong|Satya|Pablo
-|2|*rhte_lab_02_brownfield_migration*|Hong|Jatinder|Hong
-|3|*rhte_lab_03_msa_and_service_mesh*|Hong|Chad|Hong
-|4|*rhte_lab_04_api_mgmt_and_service_mesh*|jbride|jbride|Chad
-|5|*rhte_lab_05_msa_orchestration*|jbride|Bernard|Nandan
-|6|*rhte_lab_06_operational_intelligence*|jbride|Diego|Praveen/Nandan
+|Demo #|Use Case | Ops | Dev | Peer  | Customer Acceptance
+|1|*rhte_lab_01_apis_as_a_business*|Hong|Satya|Pablo| ?
+|2|*rhte_lab_02_brownfield_migration*|Hong|Jatinder|Hong| ?
+|3|*rhte_lab_03_msa_and_service_mesh*|Hong|Chad|Hong| ?
+|4|*rhte_lab_04_api_mgmt_and_service_mesh*|jbride|jbride|Chad|?
+|5|*rhte_lab_05_msa_orchestration*|jbride|Bernard|Nandan|?
+|6|*rhte_lab_06_operational_intelligence*|jbride|Diego|Praveen/Nandan|?
 |=======================================================================
 
 

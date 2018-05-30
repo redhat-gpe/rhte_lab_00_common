@@ -26,3 +26,29 @@ $ for name in jbride btison hchin sjayanti njoshi cdarby dtorresf jasingh prakri
 > oc adm policy add-role-to-user admin $name-redhat.com -n rhte-jenkins --as=system:admin;
 > done
 -----
+
+. Use Jenkins API to POST job config.xml files:
++
+-----
+$ JENKINS_API_USER_ID=< userId -> configure -> API Token -> UserID >
+$ JENKINS_API_USER_TOKEN=< userId -> configure -> API Token -> API Token >
+$ JOB_NAME=03_msa_and_service_mesh-catalog-service
+$ curl -vk -X POST -H "Content-Type: application/xml" \
+                   --user $JENKINS_API_USER_ID:$JENKINS_API_USER_TOKEN \
+                   --data "@jenkinsjobs/$JOB_NAME/config.xml" \
+                   https://jenkins-rhte-jenkins.apps.dev39.openshift.opentlc.com/createItem?name=$JOB_NAME
+-----
+
+.. Jenkins API does not allow for DELETE nor PUT (to update), only POST
+
+. Use a initializer container:
++
+-----
+$ oc create configmap opentlc-user-ssh-cm \
+    --from-literal=config="Host *github.com*
+      HostName github.com
+      User opentlc-user
+      Port 22
+      IdentityFile ~/.ssh/id_ecdsa" \
+    --from-file=id_ecdsa=$HOME/.ssh/id_ecdsa
+-----

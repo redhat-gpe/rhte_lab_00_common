@@ -87,8 +87,8 @@ Please create slide decks in:  redhat.slides.com.
 . link:https://redhat.slides.com/jbride/01_apis_as_a_business?token=KH_uUwDl[rhte_lab_01_apis_as_a_business]
 . link:https://redhat.slides.com/jbride/02_brownfield_migration?token=gV0HpHBS[rhte_lab_02_brownfield_migration]
 . link:https://redhat.slides.com/jbride/03_msa_and_service_mesh?token=ckNXJ1yU[rhte_lab_03_msa_and_service_mesh]
-. link:[rhte_lab_04_api_mgmt_and_service_mesh]
-. link:[rhte_lab_05_msa_orchestration]
+. link:https://redhat.slides.com/jbride/04_api_mgmt_service_mesh?token=YpfrvfsG[rhte_lab_04_api_mgmt_and_service_mesh]
+. link:https://redhat.slides.com/jbride/05_msa_orchestration?token=ReMbgqHO[rhte_lab_05_msa_orchestration]
 . link:https://redhat.slides.com/jbride/06_operational_intelligence?token=jf9evKi3[rhte_lab_06_operational_intelligence]
 
 

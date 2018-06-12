@@ -37,10 +37,10 @@ These multi-product demos are different:
 
 == Planning Documents:
 
-. {automation_demos_overview}
-. {cna_demos_overview}
-. {cloud_infrastructure_overview}
+. {cna_demos_overview} (Middleware team demos)
 . {rhte_session_planning}
+. {automation_demos_overview}  (Shachar's team demos)
+. {cloud_infrastructure_overview} (Aleksandr's team demos)
 
 == Red Hat Tech Exchange 2018 Dates and Locations
 

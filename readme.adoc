@@ -2,10 +2,12 @@
 :data-uri:
 :toc2:
 :linkattrs:
+:cna_demos_overview_old: link:https://docs.google.com/document/d/1hhvRPN0H48zUs4IxJh4CwS3T9V3r_lAmM46m8cWuyBs/edit#heading=h.5ovkhgyfbmm1[GPTE Cloud Native Apps Demos Overview]
+:cna_labs_overview_folder: link:https://drive.google.com/drive/folders/1qDFMyyr4idNOT8hh0HoTE81HRLXiqy5a[GPTE Cloud Native Apps Lab Overview]
+:rhte_session_planning: link:https://docs.google.com/spreadsheets/d/1BcWPAxo9GHR8Z1yHwxRCVA5tNpN8FNsNkXA6WB0yb6Q/edit#gid=1572036407[2018 Global RHTE - General Session Planning]
+:rht_planner_folder: link:https://drive.google.com/drive/folders/1HfQuQ_Ywwtv2t8-8jhKZ2ZGEkwRCpqYk[RHTE 2018 Planning Folder in Google Drive]
 :automation_demos_overview: link:https://drive.google.com/open?id=1SOCL49P87GeEcAbXF7L8Dq4b3_YMkoxkusq8tiPKfy8[GPTE Automation and Management Demos Overview]
-:cna_demos_overview: link:https://docs.google.com/document/d/1hhvRPN0H48zUs4IxJh4CwS3T9V3r_lAmM46m8cWuyBs/edit#heading=h.5ovkhgyfbmm1[GPTE Cloud Native Apps Demos Overview]
 :cloud_infrastructure_overview: link:https://drive.google.com/open?id=1o60IGJGS2Je4ydTBk_c_LT8HgIcGVsovke6bdX8QXB8[GPTE Hybrid Cloud Infrastructure Demos Overview]
-:rhte_session_planning: link:https://docs.google.com/spreadsheets/d/1BcWPAxo9GHR8Z1yHwxRCVA5tNpN8FNsNkXA6WB0yb6Q/edit#gid=1572036407[2018 Global RHTE - Session Planning]
 
 = Multi Product Demos : Instructor Guide
 
@@ -37,10 +39,9 @@ These multi-product demos are different:
 
 == Planning Documents:
 
-. {cna_demos_overview} (Middleware team demos)
+. {cna_labs_overview_folder} (Middleware team labs)
 . {rhte_session_planning}
-. {automation_demos_overview}  (Shachar's team demos)
-. {cloud_infrastructure_overview} (Aleksandr's team demos)
+. link:https://docs.google.com/spreadsheets/d/1bCTUzTNTjUu9rG9DPGo68H4lyLCg6p9rMjuC2eM1Obk/edit#gid=396704806[EMEA Tech Exchange Session Planning]
 
 == Red Hat Tech Exchange 2018 Dates and Locations
 

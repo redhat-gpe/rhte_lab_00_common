@@ -2,27 +2,27 @@
 :data-uri:
 :toc2:
 :linkattrs:
-:cna_demos_overview_old: link:https://docs.google.com/document/d/1hhvRPN0H48zUs4IxJh4CwS3T9V3r_lAmM46m8cWuyBs/edit#heading=h.5ovkhgyfbmm1[GPTE Cloud Native Apps Demos Overview]
+:cna_labs_overview_old: link:https://docs.google.com/document/d/1hhvRPN0H48zUs4IxJh4CwS3T9V3r_lAmM46m8cWuyBs/edit#heading=h.5ovkhgyfbmm1[GPTE Cloud Native Apps Labs Overview]
 :cna_labs_overview_folder: link:https://drive.google.com/drive/folders/1qDFMyyr4idNOT8hh0HoTE81HRLXiqy5a[GPTE Cloud Native Apps Lab Overview]
 :rhte_session_planning: link:https://docs.google.com/spreadsheets/d/1BcWPAxo9GHR8Z1yHwxRCVA5tNpN8FNsNkXA6WB0yb6Q/edit#gid=1572036407[2018 Global RHTE - General Session Planning]
 :rht_planner_folder: link:https://drive.google.com/drive/folders/1HfQuQ_Ywwtv2t8-8jhKZ2ZGEkwRCpqYk[RHTE 2018 Planning Folder in Google Drive]
-:automation_demos_overview: link:https://drive.google.com/open?id=1SOCL49P87GeEcAbXF7L8Dq4b3_YMkoxkusq8tiPKfy8[GPTE Automation and Management Demos Overview]
-:cloud_infrastructure_overview: link:https://drive.google.com/open?id=1o60IGJGS2Je4ydTBk_c_LT8HgIcGVsovke6bdX8QXB8[GPTE Hybrid Cloud Infrastructure Demos Overview]
+:automation_labs_overview: link:https://drive.google.com/open?id=1SOCL49P87GeEcAbXF7L8Dq4b3_YMkoxkusq8tiPKfy8[GPTE Automation and Management Labs Overview]
+:cloud_infrastructure_overview: link:https://drive.google.com/open?id=1o60IGJGS2Je4ydTBk_c_LT8HgIcGVsovke6bdX8QXB8[GPTE Hybrid Cloud Infrastructure labs Overview]
 
-= Multi Product Demos : Instructor Guide
+= Multi Product Labs : Instructor Guide
 
 :numbered:
 
 == Overview
 
-Red Hat Solution Architects and consultants have requested _multi-product demos_ that they can:
+Red Hat Solution Architects and consultants have requested _multi-product labs_ that they can:
 
 . Learn from
-. Leverage as the basis for demos / POCs that they utilize in the field
+. Leverage as the basis for labs that they utilize in the field
 
-Red Hat GPTE has been directed to create and manage these multi-product demos.
+Red Hat GPTE has been directed to create and manage these multi-product labs.
 
-These demos will be utilized at the 3 Red Hat Tech Exchanges in 2018.
+These labs will be utilized at the 3 Red Hat Tech Exchanges in 2018.
 
 == Comparison with GPTE course labs
 
@@ -31,11 +31,11 @@ This is particularly the case at the experienced and advanced levels.
 Lab assets are typically a skeleton of the final solution.
 GPTE middleware courses tend to be focused on functionality provided by a single Red Hat product.
 
-These multi-product demos are different:
+These multi-product labs are different:
 
-. Demo assets should consist of the final solution.
-. The multi-product demo should be reproducible out of the box in Red Hat Partner Demo System (RHPDS).
-. Demo instructions should highlight how to order and use the demo.
+. lab assets should consist of the final solution.
+. The multi-product labs should be reproducible out of the box in Red Hat Partner lab System (RHPDS).
+. Lab instructions should highlight how to order and use the lab.
 
 == Planning Documents:
 
@@ -47,6 +47,9 @@ These multi-product demos are different:
 == Red Hat Tech Exchange 2018 Dates and Locations
 
 . *Sept 10-14, 2018*  : Taiwan
+.. link:https://bluejeans.com/s/rq7st[APAC RHTE Speaker Briefing: Bluejeans Recording]
+.. link:https://docs.google.com/presentation/d/1h2-WUhGEH0mhdbOhx7hDN964841P0UxwRqL1Y9OT5bs/edit#slide=id.g3a3c020939_0_72[APAC RHTE Speaker Briefing Deck]
+
 . *Sept 24-28, 2018*  : Prague
 . *Oct 8-12, 2018*    : Orlando, Florida, US
 
@@ -63,7 +66,7 @@ Please check the Roadmunk FY19 ILT schedule to determine if/when you will be att
 
 [cols="1,5,5,5,5,5",options="header"]
 |=======================================================================
-|Demo #|Use Case | Ops | Dev | Peer  | Customer Acceptance
+|Lab #|Use Case | Ops | Dev | Peer  | Customer Acceptance
 |1|*rhte_lab_01_apis_as_a_business*|Hong|Satya|Pablo| ?
 |2|*rhte_lab_02_brownfield_migration*|Hong|Jatinder|Hong| ?
 |3|*rhte_lab_03_msa_and_service_mesh*|Hong|Chad|Hong| ?
@@ -75,7 +78,7 @@ Please check the Roadmunk FY19 ILT schedule to determine if/when you will be att
 
 === Project plans
 
-. Planning will occur in each multi-product demo's link:https://github.com/redhat-gpe?utf8=%E2%9C%93&q=rhte_&type=&language=[git repo].
+. Planning will occur in each multi-product lab's link:https://github.com/redhat-gpe?utf8=%E2%9C%93&q=rhte_&type=&language=[git repo].
 . Each project git repo has a prefix called:  _rhte_.
 . All issues should be assigned the following:
 .. Assignee
@@ -90,7 +93,7 @@ $ git commit -m https://github.com/redhat-gpe/rhte_lab_04_api_mgmt_and_service_m
 
 == Slides
 
-There will be one slide deck per multi-product demo.
+There will be one slide deck per multi-product lab.
 Please create slide decks in:  redhat.slides.com.
 
 . link:https://redhat.slides.com/jbride/01_apis_as_a_business?token=KH_uUwDl[rhte_lab_01_apis_as_a_business]
@@ -103,20 +106,20 @@ Please create slide decks in:  redhat.slides.com.
 
 == OCP Infrastructure
 
-All demos and student labs will be executed in OpenShift.
+All labs will be executed in OpenShift.
 
 . *Development environment:*  Please use https://master.dev39.openshift.opentlc.com
 . *ILTs* :
 +
-For each ILT, an appropriately sized OCP Workshop environment will be provisioned for each multi-product demo.  ie:  6 MW multi-product demos = 6 dedicated OCP workshop environments.
+For each ILT, an appropriately sized OCP Workshop environment will be provisioned for each multi-product lab.  ie:  6 MW multi-product labs = 6 dedicated OCP workshop environments.
 
 == CI / CD
 
 === Version Control
 
-All aspects of each multi-product demo is to be version controlled.
+All aspects of each multi-product lab is to be version controlled.
 
-NOTE:  These multi-product demos are not a GPTE course.
+NOTE:  These multi-product labs are not a GPTE course.
 Therefore, there is not a need for assessment questions nor audio recording of slides.
 
 . link:https://github.com/redhat-gpe?utf8=%E2%9C%93&q=rhte_&type=&language=[project git repo]

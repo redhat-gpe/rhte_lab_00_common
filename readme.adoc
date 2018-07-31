@@ -41,7 +41,7 @@ These multi-product demos are different:
 
 . {cna_labs_overview_folder} (Middleware team labs)
 . {rhte_session_planning}
-. link:https://docs.google.com/spreadsheets/d/1kkjsKEdsJ7ikAoLa6GvziFm4iFHCV9gWK23R1oHXIyg/edit#gid=652240199[RHTE Labs Spreadsheet]
+. link:https://docs.google.com/spreadsheets/d/1kkjsKEdsJ7ikAoLa6GvziFm4iFHCV9gWK23R1oHXIyg/edit#gid=652240199[2018 RHTE - Global Lab Planning Doc]
 . link:https://docs.google.com/spreadsheets/d/1bCTUzTNTjUu9rG9DPGo68H4lyLCg6p9rMjuC2eM1Obk/edit#gid=396704806[EMEA Tech Exchange Session Planning]
 
 == Red Hat Tech Exchange 2018 Dates and Locations

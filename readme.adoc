@@ -55,6 +55,12 @@ These multi-product labs are different:
 
 Please check the Roadmunk FY19 ILT schedule to determine if/when you will be attending
 
+== GUID Grabber
+
+. `REGION` will be pulled from GUID Grabber. Please review
+
+.. https://docs.google.com/document/d/1GoZjPpfqnian49OWAZ3vlp2TL5aKOhyfvf7jaBH0WFA/edit#heading=h.2xnkj1268hry
+.. https://mojo.redhat.com/docs/DOC-1172529
 
 == Presentation Tips
 
